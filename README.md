@@ -5,6 +5,7 @@ Reference section) to design GTseq panels for three salmonid species
 
 # TODO
 
+- Step 3 should be the last
 - Add sample file to test scripts
 - Add bash commands for test
 - Add reference to article (bioRxiv?)
@@ -18,7 +19,9 @@ Click on the following schema of the pipeline to see a larger version
 
 ## Description of scripts
 
-### `01_compute_pairwise_AFDs.py`
+### Compute pairwise AFD values
+
+`01_compute_pairwise_AFDs.py`
 
 ```
 Compute and report all pairwise AFDs based on MAFs
@@ -33,7 +36,9 @@ Chr1		33	0.07	0.14	0.30
 Chr2		98	0.61	0.22	0.18
 ```
 
-### `02_pre_filter_SNPs_on_pairwise_AFDs.py`
+### Subset SNPs to keep only these with high AFDs
+
+`02_pre_filter_SNPs_on_pairwise_AFDs.py`
 
 ```Report SNPs whith a maxiumum pairwise AFD value above user theshold
 
@@ -47,7 +52,9 @@ Chr1		33	0.07	0.14	0.30
 Chr2		98	0.61	0.22	0.18
 ```
 
-### `03_select_best_SNPs_pairwise.py`
+### Select best panel to maximize group differentiation
+
+`03_select_best_SNPs_pairwise.py`
 
 ```
 Choose the best SNPs for all pairs of populations
@@ -76,7 +83,9 @@ NC_036838.1  2171262   0.194908  0.427275  0.248636  0.053728  0.178639  0.23236
 NC_036838.1  3253985   0.144088  0.479436  0.307792  0.163704  0.171644  0.335348  0.023561
 ```
 
-### `04_score_SNPs_for_GTseq.py`
+### Extract information about potential SNPs
+
+`04_score_SNPs_for_GTseq.py`
 
 ```
 Score subset of SNPs chosen by Raphael according to the presence of
@@ -89,7 +98,9 @@ Usage:
     <program> input_selected_snps input_all_snps input_genome window_size output_file
 ```
 
-### `05_filter_SNPs.R`
+### Filter SNPs based on extracted information
+
+`05_filter_SNPs.R`
 
 ```
 Apply filters to SNPs based on flanking SNPs and sequence properties
