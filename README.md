@@ -21,7 +21,7 @@ Click on the following schema of the pipeline to see a larger version
 
 ### Compute pairwise AFD values
 
-`01_compute_pairwise_AFDs.py`
+Script: `01_compute_pairwise_AFDs.py`
 
 ```
 Compute and report all pairwise AFDs based on MAFs
@@ -38,7 +38,7 @@ Chr2		98	0.61	0.22	0.18
 
 ### Subset SNPs to keep only these with high AFDs
 
-`02_pre_filter_SNPs_on_pairwise_AFDs.py`
+Script: `02_pre_filter_SNPs_on_pairwise_AFDs.py`
 
 ```Report SNPs whith a maxiumum pairwise AFD value above user theshold
 
@@ -54,7 +54,7 @@ Chr2		98	0.61	0.22	0.18
 
 ### Select best panel to maximize group differentiation
 
-`03_select_best_SNPs_pairwise.py`
+Script: `03_select_best_SNPs_pairwise.py`
 
 ```
 Choose the best SNPs for all pairs of populations
@@ -85,7 +85,7 @@ NC_036838.1  3253985   0.144088  0.479436  0.307792  0.163704  0.171644  0.33534
 
 ### Extract information about potential SNPs
 
-`04_score_SNPs_for_GTseq.py`
+Script: `04_score_SNPs_for_GTseq.py`
 
 ```
 Score subset of SNPs chosen by Raphael according to the presence of
@@ -100,7 +100,7 @@ Usage:
 
 ### Filter SNPs based on extracted information
 
-`05_filter_SNPs.R`
+Script: `05_filter_SNPs.R`
 
 ```
 Apply filters to SNPs based on flanking SNPs and sequence properties
