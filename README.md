@@ -2,6 +2,12 @@
 
 Main scripts used to design GTseq panels for three salmonid species
 
+# TODO
+
+- Rename and reorder scripts
+- Add sample file to test scripts
+- Add bash commands for test
+
 ## Overall pipeline
 
 Click on the following schema of the pipeline to see a larger version

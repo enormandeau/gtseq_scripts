@@ -6,21 +6,19 @@ rm(list=ls())
 library(data.table)
 
 # Load data
-d1 = fread("../selected_loci.scored.tsv")
+d = fread("selected_loci.scored.tsv")
 
-# Plot columns of interest
-d = d1
-d = d[, -c("Position", "Chrom", "Position2", "Chrom2", "Major", "Minor", "Ancestral", "SequenceMod", "Sequence", "NumSamples")]
-plot(d, pch=19, col="#00000004", cex=0.5)
+# Plot columns of interest to explore filter thresholds
+dsub = d
+dsub = dsub[, -c("Position", "Chrom", "Position2", "Chrom2", "Major", "Minor", "Ancestral", "SequenceMod", "Sequence", "NumSamples")]
+plot(dsub[1:10000, ], pch=19, col="#00000004", cex=0.5)
     
 # Filtres
-# SumMAF > 2
-# Complexity < 90
-# #SNPs >> 10
+d = d[d$SumMAFs <= 2 & d$NumSNPs <= 5 & d$Complexity >= 100 & GCcontent > 0.2 & GCcontent < 0.5, ]
 
-d1 = d1[d1$SumMAFs <= 2 & d1$NumSNPs <= 5 & d1$Complexity >= 100 & GCcontent > 0.2 & GCcontent < 0.5, ]
-#d = d1[, -c("Position", "Chrom", "Position2", "Chrom2", "Major", "Minor", "Ancestral", "SequenceMod", "Sequence", "NumSamples")]
-#plot(d, pch=19, col="#00000004", cex=0.5)
+# Plot after filters
+dsub = d[, -c("Position", "Chrom", "Position2", "Chrom2", "Major", "Minor", "Ancestral", "SequenceMod", "Sequence", "NumSamples")]
+plot(dsub, pch=19, col="#00000004", cex=0.5)
 
-# Write files
-write.table(d1, "../selected_loci.scored.good.tsv", quote=F, row.names=F, sep="\t")
+# Write file
+write.table(d, "selected_loci.scored.good.tsv", quote=F, row.names=F, sep="\t")

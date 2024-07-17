@@ -3,6 +3,13 @@
 
 Usage:
     <program> input_mafs output_afds
+
+Examples input format (number of columns dependents on the number of groups):
+
+ChromName	pos	maf1	maf2	maf3
+Chr1		33	0.07	0.14	0.30
+Chr2		98	0.61	0.22	0.18
+
 """
 
 # Modules
@@ -20,7 +27,7 @@ except:
 with open(input_mafs) as infile:
     with open(output_afds, "wt") as outfile:
         for line in infile:
-            if line.startswith("Chromo"):
+            if line.startswith("ChromName"):
                 continue
 
             l = line.strip().split("\t")

@@ -3,16 +3,17 @@
 
 For each pair of populations
     - sort the AFDs by decreasing order
-    - Pick the top ones (if they are not too close to previously picked SNPs)
-    - Go down the list until you have reached `target_sum` <float>
-    - Continue for following populations
+    - Pick the top ones (exclude them if they are within `min_distance` of a previously retained SNPs)
+    - Go down the list until you have reached `target_sum` of AFDs <float>
+
+Continue for following populations and report retained SNPs
 
 Usage:
     <program> input_afds target_sum exponent min_distance output_snps
 
 Format of input_afds file (tab-separated):
 
-Chrom        Position  AFDScore  AFDScore  AFDScore  AFDScore  AFDScore  AFDScore  AFDScore
+ChromName    Position  AFDScore  AFDScore  AFDScore  AFDScore  AFDScore  AFDScore  AFDScore
 NC_036838.1  1743435   0.171305  0.272733  0.115156  0.056149  0.387889  0.444038  0.014845
 NC_036838.1  1760446   0.182961  0.384065  0.077204  0.105757  0.306861  0.201104  0.350584
 NC_036838.1  1902438   0.03789   0.048098  0.122343  0.160233  0.170441  0.010208  0.319688
@@ -40,7 +41,7 @@ except:
     print(__doc__)
     sys.exit(1)
 
-# Let's go
+# Set variables
 snp_positions = defaultdict(list)
 snp_positions["fake"].append(-min_distance)
 retained_snps = list()
@@ -58,10 +59,9 @@ for col in list(df.columns):
         # Sort df by that column
         df.sort_values(col, ascending=False, inplace=True)
         df[col] = df[col] ** exponent
-        #df.reset_index(inplace=True)
 
         values = list(df[col])
-        chroms = list(df["Chrom"])
+        chroms = list(df["ChromName"])
         positions = list(df["Position"])
         afds = list(zip(values, chroms, positions))
 
