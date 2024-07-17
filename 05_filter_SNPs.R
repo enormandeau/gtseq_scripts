@@ -1,3 +1,5 @@
+# Apply filters to SNPs based on flanking SNPs and sequence properties
+
 # Cleanup
 rm(list=ls())
 

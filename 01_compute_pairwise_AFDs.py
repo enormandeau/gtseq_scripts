@@ -9,7 +9,6 @@ Examples input format (number of columns dependents on the number of groups):
 ChromName	pos	maf1	maf2	maf3
 Chr1		33	0.07	0.14	0.30
 Chr2		98	0.61	0.22	0.18
-
 """
 
 # Modules
