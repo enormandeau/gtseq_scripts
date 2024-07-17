@@ -5,11 +5,12 @@ Reference section) to design GTseq panels for three salmonid species
 
 # TODO
 
-- Step 3 should be the last
-- Add sample file to test scripts
-- Add bash commands for test
+- Improve script 03's documentation, especially about file types needed
 - Add reference to article (bioRxiv?)
 - Add License
+
+- Add sample files to test scripts?
+- Add bash commands for test
 
 ## Overall pipeline
 
@@ -20,6 +21,8 @@ Click on the following schema of the pipeline to see a larger version
 ## Description of scripts
 
 ### Compute pairwise AFD values
+
+Starting from MAF values in each group, compute all pairwise AFD values.
 
 Script: `01_compute_pairwise_AFDs.py`
 
@@ -38,9 +41,12 @@ Chr2		98	0.61	0.22	0.18
 
 ### Subset SNPs to keep only these with high AFDs
 
+Keep only SNPs for which the maximum pairwize AFD value is above a given
+threshold.
+
 Script: `02_pre_filter_SNPs_on_pairwise_AFDs.py`
 
-```Report SNPs whith a maxiumum pairwise AFD value above user theshold
+```Report SNPs whith a maximum pairwise AFD value above user theshold
 
 Usage:
     <program> input_afds min_afd output_ids
@@ -52,9 +58,55 @@ Chr1		33	0.07	0.14	0.30
 Chr2		98	0.61	0.22	0.18
 ```
 
+### Extract information about potential SNPs
+
+Script: `03_score_SNPs_for_GTseq.py`
+
+```
+For each SNP of interest, extract information about flanking SNPs, sequence
+complexity and GC content, etc.
+
+Usage:
+    <program> input_selected_snps input_all_snps input_genome window_size output_file
+
+`input_selected_snps` file format:
+
+NC_036838.1	60649
+NC_036838.1	84727
+NC_036838.1	434621
+NC_036838.1	981627
+NC_036838.1	1702986
+NC_036838.1	1758963
+NC_036838.1	1761652
+
+`input_all_snps` format:
+
+chromo       position  major  minor  anc  knownEM   nInd
+NC_036838.1  25        G      A      G    0.010773  138
+NC_036838.1  29        G      T      G    0.844871  139
+NC_036838.1  53        A      C      A    0.036794  156
+NC_036838.1  67        C      T      C    0.011812  174
+NC_036838.1  86        G      A      G    0.161940  178
+NC_036838.1  88        T      G      T    0.022172  174
+
+`input_genome` format: fasta or gzip-compressed fasta
+
+`window_size`: Minimum distance between two retained SNPs <int>
+
+`output_file`: Name of output file
+```
+
+### Filter SNPs based on extracted information
+
+Script: `04_filter_SNPs.R`
+
+```
+Apply filters to SNPs based on flanking SNPs and sequence properties
+```
+
 ### Select best panel to maximize group differentiation
 
-Script: `03_select_best_SNPs_pairwise.py`
+Script: `05_select_best_SNPs_pairwise.py`
 
 ```
 Choose the best SNPs for all pairs of populations
@@ -81,29 +133,6 @@ NC_036838.1  1949218   0.200558  0.065416  0.034061  0.166497  0.099477  0.26597
 NC_036838.1  2009390   0.106727  0.03674   0.379363  0.272636  0.342623  0.069987  0.205130
 NC_036838.1  2171262   0.194908  0.427275  0.248636  0.053728  0.178639  0.232367  0.203546
 NC_036838.1  3253985   0.144088  0.479436  0.307792  0.163704  0.171644  0.335348  0.023561
-```
-
-### Extract information about potential SNPs
-
-Script: `04_score_SNPs_for_GTseq.py`
-
-```
-Score subset of SNPs chosen by Raphael according to the presence of
-neighbouring SNPs.
-
-- Less or no SNPs in the surrounding region is best
-- SNPs with low MAFs are not as bad
-
-Usage:
-    <program> input_selected_snps input_all_snps input_genome window_size output_file
-```
-
-### Filter SNPs based on extracted information
-
-Script: `05_filter_SNPs.R`
-
-```
-Apply filters to SNPs based on flanking SNPs and sequence properties
 ```
 
 ## Reference

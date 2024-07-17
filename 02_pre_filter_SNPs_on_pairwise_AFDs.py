@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Report SNPs whith a maxiumum pairwise AFD value above user theshold
+"""Report SNPs whith a maximum pairwise AFD value above user theshold
 
 Usage:
     <program> input_afds min_afd output_ids

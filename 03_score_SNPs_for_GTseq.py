@@ -1,12 +1,35 @@
 #!/usr/bin/env python3
-"""Score subset of SNPs chosen by Raphael according to the presence of
-neighbouring SNPs.
-
-- Less or no SNPs in the surrounding region is best
-- SNPs with low MAFs are not as bad
+"""For each SNP of interest, extract information about flanking SNPs, sequence
+complexity and GC content, etc.
 
 Usage:
     <program> input_selected_snps input_all_snps input_genome window_size output_file
+
+`input_selected_snps` file format:
+
+NC_036838.1	60649
+NC_036838.1	84727
+NC_036838.1	434621
+NC_036838.1	981627
+NC_036838.1	1702986
+NC_036838.1	1758963
+NC_036838.1	1761652
+
+`input_all_snps` format:
+
+chromo       position  major  minor  anc  knownEM   nInd
+NC_036838.1  25        G      A      G    0.010773  138
+NC_036838.1  29        G      T      G    0.844871  139
+NC_036838.1  53        A      C      A    0.036794  156
+NC_036838.1  67        C      T      C    0.011812  174
+NC_036838.1  86        G      A      G    0.161940  178
+NC_036838.1  88        T      G      T    0.022172  174
+
+`input_genome` format: fasta or gzip-compressed fasta
+
+`window_size`: Minimum distance between two retained SNPs <int>
+
+`output_file`: Name of output file
 """
 
 # Modules
@@ -122,12 +145,6 @@ with open(input_selected_snps) as infile:
                     all_snps[chrom][pos_truncated + 1])
 
             center_snp = [x for x in surrounding_snps if abs(x[1] - pos) == 0][0]
-
-            # Version for Hyung Bae's data containing SNPs not in the overall bedfile
-            #try:
-            #    center_snp = [x for x in surrounding_snps if abs(x[1] - pos) == 0][0]
-            #except:
-            #    continue
 
             surrounding_snps = [x for x in surrounding_snps if
                     abs(x[1] - pos) and abs(x[1] - pos) <= window_size]
