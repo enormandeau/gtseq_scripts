@@ -5,12 +5,10 @@ Reference section) to design GTseq panels for three salmonid species
 
 # TODO
 
-- Improve script 03's documentation, especially about file types needed
-- Add reference to article (bioRxiv?)
-- Add License
-
 - Add sample files to test scripts?
+    - See: `/media/data/Projects/Anne_Beemelmans/2023-12-07_design_GTseq_panel_arctic_charr_taloyoak`
 - Add bash commands for test
+- Add reference to article once available (bioRxiv?)
 
 ## Overall pipeline
 
@@ -138,3 +136,7 @@ NC_036838.1  3253985   0.144088  0.479436  0.307792  0.163704  0.171644  0.33534
 ## Reference
 
 ## License
+
+CC share-alike
+
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">gtseq_scripts</span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">Eric Normandeau</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
