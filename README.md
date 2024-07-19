@@ -22,8 +22,10 @@ Click on the following schema of the workflow to see a larger version
 ## Description of scripts
 
 Below, each script is described briefly in order of use with the commands that
-can be used to run all the scripts on the test dataset. The Python scripts can
-be launched without arguments to print their documentation strings. 
+can be used to run all the scripts on the test dataset found in `02_data`. The
+Python scripts can be launched without arguments to print their documentation
+strings. The R script should be run interactively, for example in RStudio, to
+decide on the thresholds for the filters before applying them.
 
 ### Compute pairwise AFD values
 
