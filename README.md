@@ -3,15 +3,9 @@
 Scripts used in step 6 for the "SNP selection" of the Beemelman *et al.* paper
 (see Reference section) to design GTseq panels for three salmonid species
 
-# TODO
-
-- Add command before `05_select_best_SNPs_pairwise.py` to extract just the
-  wanted lines from the AFD file
-- Test and add bash commands for test
-
 ## Reference
 
-TODO: Add reference to paper once available
+TODO: *Add reference to paper once available*
 
 ## Overall workflow
 
@@ -27,8 +21,8 @@ Python scripts can be launched without arguments to print their documentation
 strings. The R script should be run interactively, for example in RStudio, to
 decide on the thresholds for the filters before applying them.
 
-**/!\ WARNING:** Due to the presence of the test data, this repository weights
-about 135 MB
+**/!\ WARNING:** Due to the presence of the test data, **this repository
+weights about 135 MB**
 
 ### Compute pairwise AFD values
 
