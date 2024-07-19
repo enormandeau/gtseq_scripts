@@ -21,8 +21,9 @@ Click on the following schema of the workflow to see a larger version
 
 ## Description of scripts
 
-Each python script can be launched without arguments to print its documentation
-string.
+Below, each script is described briefly in order of use with the commands that
+can be used to run all the scripts on the test dataset. The Python scripts can
+be launched without arguments to print their documentation strings. 
 
 ### Compute pairwise AFD values
 
@@ -46,7 +47,8 @@ properties
 
 ### Select best panel to maximize group differentiation
 
-`05_select_best_SNPs_pairwise.py`: Choose the best SNPs for all pairs of populations
+`05_select_best_SNPs_pairwise.py`: Choose the best SNPs for all pairs of
+     populations
 
 ## License
 
