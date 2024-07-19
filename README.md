@@ -75,8 +75,10 @@ lines for the SNPs that passed the filters.
      populations
 
 ```
- ./01_scripts/06_select_best_SNPs_pairwise.py afds_chr1_min0.4.scored.good.AFDs.tsv 12.6 2 10000 afds_chr1_min0.4.scored.good.AFDs.selected.tsv
+./01_scripts/06_select_best_SNPs_pairwise.py afds_chr1_min0.4.scored.good.AFDs.tsv 12.6 2 10000 afds_chr1_min0.4.scored.good.AFDs.selected.tsv
  ```
+
+You can use this output to visualize how the SNPs are distributed along the chromosomes.
 
 ## License
 
