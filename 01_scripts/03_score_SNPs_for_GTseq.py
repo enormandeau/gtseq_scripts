@@ -98,16 +98,22 @@ except:
     sys.exit(1)
 
 # Load genome
+print("Loading genome sequences")
 genome = dict()
 
 fasta = fasta_iterator(input_genome)
 
 for f in fasta:
+    # Report only long scaffolds
+    if len(f.sequence) > 100000:
+        print("    Scaffold: " + f.name.split(" ")[0])
+
     genome[f.name.split(" ")[0]] = f.sequence.upper()
 
 # Load all SNPs
 all_snps = defaultdict(lambda: defaultdict(list))
 
+print("Loading SNPs")
 with myopen(input_all_snps) as infile:
     for line in infile:
         if line.startswith("chromo"):
@@ -124,6 +130,8 @@ with myopen(input_all_snps) as infile:
         all_snps[chrom][pos_truncated].append((chrom, pos, major, minor, ancestral, EM, nind))
 
 # Score selected SNPs using all the SNPs
+print("Scoring SNPs")
+seen_chrom = set()
 with open(input_selected_snps) as infile:
 
     with open(output_file, "wt") as outfile:
@@ -136,30 +144,37 @@ with open(input_selected_snps) as infile:
 
             l = line.strip().split("\t")
             chrom = l[0]
+            if not chrom in seen_chrom:
+                print(f"    Scaffold: {chrom}")
+                seen_chrom.add(chrom)
+
             pos = int(l[1])
 
             pos_truncated = pos // window_size
 
-            surrounding_snps = (all_snps[chrom][pos_truncated - 1] +
+            flanking_snps = (all_snps[chrom][pos_truncated - 1] +
                     all_snps[chrom][pos_truncated] +
                     all_snps[chrom][pos_truncated + 1])
 
-            center_snp = [x for x in surrounding_snps if abs(x[1] - pos) == 0][0]
+            center_snp = [x for x in flanking_snps if abs(x[1] - pos) == 0][0]
 
-            surrounding_snps = [x for x in surrounding_snps if
+            flanking_snps = [x for x in flanking_snps if
                     abs(x[1] - pos) and abs(x[1] - pos) <= window_size]
 
-            sum_mafs = sum([x[5] for x in surrounding_snps])
-            num_snps = len(surrounding_snps)
+            sum_mafs = sum([x[5] for x in flanking_snps])
+            num_snps = len(flanking_snps)
 
-            seq = list(genome[chrom][pos - window_size - 1: pos + window_size])
-            seq_original = "".join(seq)
+            left = max(pos - window_size - 1, 0)
+            right = min(pos + window_size, len(genome[chrom]))
+            
+            seq = list(genome[chrom][left: right])
+            seq_original = seq[:]
 
             # Use compression, patterns, GC content...
             complexity = len(gzip.compress("".join(seq).encode()))
-            gc_content = (seq.count("G") + seq.count("C")) / len(seq)
+            gc_content = (seq.count("G") + seq.count("C")) / (len(seq) - seq.count("N"))
 
-            for s in surrounding_snps:
+            for s in flanking_snps:
                 seq[s[1] - pos + window_size] = "N"
 
             seq[window_size] = "[" + center_snp[2] + "/" + center_snp[3] + "]"

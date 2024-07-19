@@ -1,7 +1,7 @@
 # GTseq scripts
 
-Scripts used in step 6 "SNP selection" of the Beemelman et al. paper (see
-Reference section) to design GTseq panels for three salmonid species
+Scripts used in step 6 for the "SNP selection" of the Beemelman *et al.* paper
+(see Reference section) to design GTseq panels for three salmonid species
 
 # TODO
 
@@ -11,7 +11,7 @@ Reference section) to design GTseq panels for three salmonid species
 
 ## Reference
 
-TODO: Add reference to paper here
+TODO: Add reference to paper once available
 
 ## Overall workflow
 
@@ -35,6 +35,8 @@ Usage:
 
 Examples input format (number of columns dependents on the number of groups):
 
+(header line optional)
+
 ChromName	pos	maf1	maf2	maf3
 Chr1		33	0.07	0.14	0.30
 Chr2		98	0.61	0.22	0.18
@@ -53,6 +55,8 @@ Usage:
     <program> input_afds min_afd output_ids
 
 Examples input format (number of columns dependents on the number of pairwise tests):
+
+(header line optional)
 
 ChromName	pos	afd1	afd2	afd3
 Chr1		33	0.07	0.14	0.30
