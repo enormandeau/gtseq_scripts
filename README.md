@@ -1,7 +1,7 @@
 # GTseq scripts
 
-Scripts used in step 6 for the "SNP selection" of the Beemelman *et al.* paper
-(see Reference section) to design GTseq panels for three salmonid species
+Scripts used in step 6, "SNP selection", of the Beemelmanns paper cited below
+to design GTseq panels for three salmonid species.
 
 ## Reference
 
