@@ -27,6 +27,9 @@ Python scripts can be launched without arguments to print their documentation
 strings. The R script should be run interactively, for example in RStudio, to
 decide on the thresholds for the filters before applying them.
 
+/!\ WARNING: Due to the presence of the test data, this repository weights
+about 135 MB
+
 ### Compute pairwise AFD values
 
 `01_compute_pairwise_AFDs.py`: Starting from MAF values in each group, compute
