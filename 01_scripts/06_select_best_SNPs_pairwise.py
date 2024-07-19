@@ -52,10 +52,9 @@ df = pd.read_csv(input_afds, sep="\t")
 # Iterate over columns
 for col in list(df.columns):
     num_retained_col = 0
-
     current_sum = 0.0
 
-    if "AFDs" in col:
+    if "AFD" in col:
         # Sort df by that column
         df.sort_values(col, ascending=False, inplace=True)
         df[col] = df[col] ** exponent
