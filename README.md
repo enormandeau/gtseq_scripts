@@ -5,16 +5,19 @@ Reference section) to design GTseq panels for three salmonid species
 
 # TODO
 
-- Add sample files to test scripts?
-    - See: `/media/data/Projects/Anne_Beemelmans/2023-12-07_design_GTseq_panel_arctic_charr_taloyoak`
-- Add bash commands for test
-- Add reference to article once available (bioRxiv?)
+- Add sample files to test scripts
+    (`/media/data/Projects/Anne_Beemelmans/2023-12-07_design_GTseq_panel_arctic_charr_taloyoak`)
+- Test and add bash commands for test
 
-## Overall pipeline
+## Reference
 
-Click on the following schema of the pipeline to see a larger version
+TODO: Add reference to paper here
 
-![Schema of the pipeline](pipeline.png)
+## Overall workflow
+
+Click on the following schema of the workflow to see a larger version
+
+![Schema of the workflow](workflow_figure.png)
 
 ## Description of scripts
 
@@ -132,8 +135,6 @@ NC_036838.1  2009390   0.106727  0.03674   0.379363  0.272636  0.342623  0.06998
 NC_036838.1  2171262   0.194908  0.427275  0.248636  0.053728  0.178639  0.232367  0.203546
 NC_036838.1  3253985   0.144088  0.479436  0.307792  0.163704  0.171644  0.335348  0.023561
 ```
-
-## Reference
 
 ## License
 
