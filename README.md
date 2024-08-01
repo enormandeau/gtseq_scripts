@@ -11,7 +11,7 @@ TODO: *Add reference to paper once available*
 
 Click on the following schema of the workflow to see a larger version
 
-![Schema of the workflow](02_data/workflow_figure.png)
+![Schema of the workflow](02_data/figure.png)
 
 ## Description of scripts
 
