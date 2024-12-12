@@ -46,6 +46,7 @@ snp_positions = defaultdict(list)
 snp_positions["fake"].append(-min_distance)
 retained_snps = list()
 retained = 0
+afd_col = 0
 
 df = pd.read_csv(input_afds, sep="\t")
 
@@ -55,6 +56,8 @@ for col in list(df.columns):
     current_sum = 0.0
 
     if "AFD" in col:
+        afd_col += 1
+
         # Sort df by that column
         df.sort_values(col, ascending=False, inplace=True)
         df[col] = df[col] ** exponent
@@ -77,8 +80,12 @@ for col in list(df.columns):
                 num_retained_col += 1
 
             if current_sum > target_sum:
-                print(f"  {col}:\tRetained {num_retained_col} SNPs for {col}")
                 break
+
+    else:
+        continue
+
+    print(f"  Retained {num_retained_col} SNPs for AFD {afd_col}")
 
 print(f"Retained a total of {len(retained_snps)}")
 

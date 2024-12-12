@@ -26,8 +26,8 @@ max_GCcontent = 0.8
 d = d[d$SumMAFs <= max_SumMAFs &
         d$NumSNPs <= max_NumSNPs &
         d$Complexity >= min_complexity &
-        GCcontent >= min_GCcontent &
-        GCcontent <= max_GCcontent, ]
+        d$GCcontent >= min_GCcontent &
+        d$GCcontent <= max_GCcontent, ]
 
 # Plot after filters
 dsub = d[, -c("Position", "Chrom", "Position2", "Chrom2", "Major", "Minor", "Ancestral", "SequenceMod", "Sequence", "NumSamples")]
