@@ -186,5 +186,5 @@ with open(input_selected_snps) as infile:
             outfile.write("\t".join([str(x) for x in l +
                 [num_snps, round(sum_mafs, 4), complexity, round(gc_content, 4)] +
                 list(center_snp) +
-                ["".join(seq), seq_original]
+                ["".join(seq), "".join(seq_original)]
                 ]) + "\n")
